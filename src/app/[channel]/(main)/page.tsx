@@ -28,11 +28,11 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 			{/* Hero Section */}
 			<Hero />
 
+			{/* Technology Safety Section */}
+			<TechnologySafetySection />
+
 			{/* Featured Products Section */}
 			<FeaturedProductsSection products={products} />
-
-			{/* Technology & Safety Features Section */}
-			<TechnologySafetySection />
 
 			{/* Customer Testimonials Section */}
 			<CustomerTestimonialsSection />
