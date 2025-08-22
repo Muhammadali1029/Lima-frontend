@@ -1,0 +1,94 @@
+/* 3D Testimonials Carousel Styles - adapted from UI Verse */
+@keyframes autoRun3d {
+	from {
+		transform: perspective(800px) rotateY(-360deg);
+	}
+	to {
+		transform: perspective(800px) rotateY(0deg);
+	}
+}
+
+@keyframes animateBrightness {
+	10% {
+		filter: brightness(1);
+	}
+	50% {
+		filter: brightness(0.3);
+	}
+	90% {
+		filter: brightness(1);
+	}
+}
+
+.container {
+	position: relative;
+	width: 1200px;
+	height: 500px;
+	transform-style: preserve-3d;
+	transform: perspective(2000px);
+	animation: autoRun3d 30s linear infinite;
+	will-change: transform;
+}
+
+.card {
+	position: absolute;
+	width: 320px;
+	height: 240px;
+	background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(64, 64, 64, 0.95));
+	border: 2px solid rgba(201, 169, 97, 0.3);
+	border-radius: 1rem;
+	top: 50%;
+	left: 50%;
+	transform-origin: center center;
+	animation: animateBrightness 30s linear infinite;
+	transition-duration: 200ms;
+	will-change: transform, filter;
+	backdrop-filter: blur(10px);
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.container:hover {
+	animation-play-state: paused !important;
+}
+
+.container:hover .card {
+	animation-play-state: paused !important;
+}
+
+.card:nth-child(1) {
+	transform: translate(-50%, -50%) rotateY(0deg) translateZ(300px);
+	animation-delay: 0s;
+}
+
+.card:nth-child(2) {
+	transform: translate(-50%, -50%) rotateY(60deg) translateZ(300px);
+	animation-delay: -5s;
+}
+
+.card:nth-child(3) {
+	transform: translate(-50%, -50%) rotateY(120deg) translateZ(300px);
+	animation-delay: -10s;
+}
+
+.card:nth-child(4) {
+	transform: translate(-50%, -50%) rotateY(180deg) translateZ(300px);
+	animation-delay: -15s;
+}
+
+.card:nth-child(5) {
+	transform: translate(-50%, -50%) rotateY(240deg) translateZ(300px);
+	animation-delay: -20s;
+}
+
+.card:nth-child(6) {
+	transform: translate(-50%, -50%) rotateY(300deg) translateZ(300px);
+	animation-delay: -25s;
+}
+
+.card:nth-child(7) {
+	transform: translate(-50%, -50%) rotateY(360deg) translateZ(300px);
+	animation-delay: -35s;
+}

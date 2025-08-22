@@ -3,6 +3,7 @@ import { executeGraphQL } from "@/lib/graphql";
 import { Hero } from "@/ui/components/Hero";
 import { FeaturedProductsSection } from "@/ui/components/FeaturedProductsSection";
 import { TechnologySafetySection } from "@/ui/components/TechnologySafetySection";
+import { CustomerTestimonialsSection } from "@/ui/components/CustomerTestimonialsSection";
 
 export const metadata = {
 	title: "Premium Motorcycle Gear | Unrivaled Protection on the Road",
@@ -27,11 +28,14 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 			{/* Hero Section */}
 			<Hero />
 
+			{/* Featured Products Section */}
+			<FeaturedProductsSection products={products} />
+
 			{/* Technology & Safety Features Section */}
 			<TechnologySafetySection />
 
-			{/* Featured Products Section */}
-			<FeaturedProductsSection products={products} />
+			{/* Customer Testimonials Section */}
+			<CustomerTestimonialsSection />
 		</>
 	);
 }
