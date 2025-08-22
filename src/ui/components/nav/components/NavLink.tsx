@@ -14,11 +14,20 @@ export function NavLink({ href, children }: { href: string; children: ReactEleme
 			<LinkWithChannel
 				href={href}
 				className={clsx(
-					isActive ? "border-neutral-900 text-neutral-900" : "border-transparent text-neutral-500",
-					"inline-flex items-center border-b-2 pt-px text-sm font-medium hover:text-neutral-700",
+					isActive
+						? "border-accent text-accent shadow-gold-glow"
+						: "border-transparent text-text-secondary hover:border-surface-muted hover:text-text-primary",
+					"group inline-flex items-center rounded-t-md border-b-2 px-3 py-2 text-sm font-medium transition-all duration-300",
+					"hover:bg-surface-dark/50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface-black",
 				)}
 			>
-				{children}
+				<span className="relative">
+					{children}
+					{/* Premium active indicator */}
+					{isActive && (
+						<span className="absolute -bottom-3 left-1/2 h-1 w-full -translate-x-1/2 transform rounded-full bg-gradient-gold"></span>
+					)}
+				</span>
 			</LinkWithChannel>
 		</li>
 	);
