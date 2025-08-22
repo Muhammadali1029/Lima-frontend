@@ -4,6 +4,7 @@ import { Hero } from "@/ui/components/Hero";
 import { FeaturedProductsSection } from "@/ui/components/FeaturedProductsSection";
 import { TechnologySafetySection } from "@/ui/components/TechnologySafetySection";
 import { CustomerTestimonialsSection } from "@/ui/components/CustomerTestimonialsSection";
+import { ShopByCategorySection } from "@/ui/components/ShopByCategorySection";
 
 export const metadata = {
 	title: "Premium Motorcycle Gear | Unrivaled Protection on the Road",
@@ -33,6 +34,9 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 
 			{/* Featured Products Section */}
 			<FeaturedProductsSection products={products} />
+
+			{/* Shop by Category Section */}
+			<ShopByCategorySection />
 
 			{/* Customer Testimonials Section */}
 			<CustomerTestimonialsSection />
