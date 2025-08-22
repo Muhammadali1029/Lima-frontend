@@ -166,44 +166,41 @@ export function TechnologySafetySection({
 					<p className="mt-6 text-xl leading-relaxed text-text-secondary">{subtitle}</p>
 				</div>
 
-				{/* Feature Cards Grid */}
+				{/* Morphing Cards Grid - All Screen Sizes */}
 				<div className="mt-20">
 					<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 						{featuresToRender.map((feature) => (
 							<div
 								key={feature.id}
-								className="group relative overflow-hidden rounded-2xl border border-surface-muted bg-surface-medium shadow-premium-md transition-all duration-500 hover:-translate-y-2 hover:border-accent/50 hover:shadow-premium-xl"
+								className="group relative mx-auto h-80 w-60 cursor-pointer overflow-hidden rounded-3xl bg-gradient-to-br from-surface-medium to-surface-dark shadow-premium-lg transition-all duration-300 hover:shadow-gold-glow-lg"
 							>
-								{/* Card Background Pattern */}
-								<div className="absolute inset-0 opacity-5">
-									<div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent" />
-								</div>
+								{/* Top morphing circle */}
+								<div className="absolute -left-16 -top-32 h-44 w-32 rounded-full bg-gradient-to-br from-accent/30 to-action/20 transition-all duration-500 group-hover:-left-16 group-hover:-top-20 group-hover:h-[140%] group-hover:w-[140%]"></div>
 
-								{/* Card Content */}
-								<div className="relative p-8">
-									{/* Icon Container */}
-									<div className="mb-6">
-										<div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-action shadow-gold-glow transition-all duration-300 group-hover:scale-110 group-hover:shadow-gold-glow-lg">
-											<div className="text-surface-black transition-transform duration-300 group-hover:scale-110">
-												{feature.icon}
-											</div>
+								{/* Bottom morphing circle with content */}
+								<div className="absolute -bottom-32 -right-16 flex h-44 w-36 items-end justify-end rounded-full bg-gradient-to-br from-accent/20 to-action/30 text-center text-sm transition-all duration-500 group-hover:bottom-0 group-hover:right-0 group-hover:h-full group-hover:w-full group-hover:items-center group-hover:justify-center group-hover:rounded-b-none">
+									{/* Hover content - visible when card is hovered */}
+									<div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 transition-all delay-200 duration-500 group-hover:opacity-100">
+										<div className="text-center">
+											<div className="mb-4 flex justify-center text-2xl text-accent">{feature.icon}</div>
+											<h3 className="mb-3 font-display text-lg font-semibold text-secondary">
+												{feature.headline}
+											</h3>
+											<p className="text-sm leading-relaxed text-text-secondary">{feature.description}</p>
 										</div>
 									</div>
-
-									{/* Content */}
-									<div>
-										<h3 className="mb-4 font-display text-xl font-semibold text-secondary transition-colors duration-300 group-hover:text-accent">
-											{feature.headline}
-										</h3>
-										<p className="text-sm leading-relaxed text-text-secondary">{feature.description}</p>
-									</div>
-
-									{/* Premium Border Effect */}
-									<div className="pointer-events-none absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-accent/20 via-transparent to-accent/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 								</div>
 
-								{/* Hover Glow Effect */}
-								<div className="pointer-events-none absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-accent to-action opacity-0 blur transition-opacity duration-300 group-hover:opacity-20" />
+								{/* Default state content */}
+								<div className="flex h-full w-full items-center justify-center transition-opacity duration-300 group-hover:opacity-0">
+									<div className="text-center">
+										<div className="mb-4 flex justify-center text-3xl text-accent">{feature.icon}</div>
+										<h3 className="font-display text-xl font-bold text-secondary">
+											{feature.headline.split(" ")[0]}
+										</h3>
+										<p className="mt-2 text-sm font-medium text-accent">Hover to Learn More</p>
+									</div>
+								</div>
 							</div>
 						))}
 					</div>
