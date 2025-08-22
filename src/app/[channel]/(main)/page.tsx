@@ -20,12 +20,12 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 		revalidate: 60,
 	});
 
-	const products = data.collection?.products.edges.map(({ node: product }) => product) || [];
+	const products = data.collection?.products?.edges?.map(({ node: product }) => product) || [];
 
 	return (
 		<>
 			{/* Hero Section */}
-			<Hero channel={params.channel} />
+			<Hero />
 
 			{/* Featured Products Section */}
 			{products.length > 0 && (
@@ -94,7 +94,6 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 						<div className="mt-16 text-center">
 							<div className="inline-flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
 								<LinkWithChannel
-									channel={params.channel}
 									href="/products"
 									className="group inline-flex items-center justify-center rounded-lg bg-gradient-gold px-8 py-4 text-lg font-semibold text-surface-black shadow-premium-lg transition-all duration-300 hover:scale-105 hover:shadow-gold-glow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface-dark"
 								>
@@ -115,7 +114,6 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 								</LinkWithChannel>
 
 								<LinkWithChannel
-									channel={params.channel}
 									href="/collections"
 									className="inline-flex items-center text-text-secondary transition-colors duration-300 hover:text-accent"
 								>

@@ -1,10 +1,6 @@
 import { LinkWithChannel } from "@/ui/atoms/LinkWithChannel";
 
-interface HeroProps {
-	channel: string;
-}
-
-export function Hero({ channel }: HeroProps) {
+export function Hero() {
 	return (
 		<section className="relative h-[100vh] min-h-[600px] w-full overflow-hidden">
 			{/* Background Image */}
@@ -44,7 +40,6 @@ export function Hero({ channel }: HeroProps) {
 						{/* CTA Buttons */}
 						<div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
 							<LinkWithChannel
-								channel={channel}
 								href="/products"
 								className="group inline-flex items-center justify-center rounded-lg bg-gradient-gold px-8 py-4 text-lg font-semibold text-surface-black shadow-premium-lg transition-all duration-300 hover:scale-105 hover:shadow-gold-glow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface-black"
 							>
@@ -65,7 +60,6 @@ export function Hero({ channel }: HeroProps) {
 							</LinkWithChannel>
 
 							<LinkWithChannel
-								channel={channel}
 								href="/collections"
 								className="group inline-flex items-center justify-center rounded-lg border-2 border-text-secondary px-8 py-4 text-lg font-semibold text-text-secondary backdrop-blur-premium transition-all duration-300 hover:border-accent hover:bg-surface-dark/50 hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface-black"
 							>
