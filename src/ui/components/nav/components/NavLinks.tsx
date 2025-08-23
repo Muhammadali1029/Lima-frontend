@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { NavLink } from "./NavLink";
+import { ShopDropdown } from "./ShopDropdown";
 import { executeGraphQL } from "@/lib/graphql";
 import { MenuGetBySlugDocument } from "@/gql/graphql";
 
@@ -9,24 +9,14 @@ export const NavLinks = async ({ channel }: { channel: string }) => {
 		revalidate: 60 * 60 * 24,
 	});
 
+	// Separate categories/collections (for dropdown) from other nav items
+	const shopItems = navLinks.menu?.items?.filter((item) => item.category || item.collection) || [];
+	const otherNavItems = navLinks.menu?.items?.filter((item) => !item.category && !item.collection) || [];
+
 	return (
 		<>
-			<NavLink href="/products">All</NavLink>
-			{navLinks.menu?.items?.map((item) => {
-				if (item.category) {
-					return (
-						<NavLink key={item.id} href={`/categories/${item.category.slug}`}>
-							{item.category.name}
-						</NavLink>
-					);
-				}
-				if (item.collection) {
-					return (
-						<NavLink key={item.id} href={`/collections/${item.collection.slug}`}>
-							{item.collection.name}
-						</NavLink>
-					);
-				}
+			<ShopDropdown menuItems={shopItems} />
+			{otherNavItems.map((item) => {
 				if (item.page) {
 					return (
 						<NavLink key={item.id} href={`/pages/${item.page.slug}`}>
@@ -36,9 +26,9 @@ export const NavLinks = async ({ channel }: { channel: string }) => {
 				}
 				if (item.url) {
 					return (
-						<Link key={item.id} href={item.url}>
+						<NavLink key={item.id} href={item.url}>
 							{item.name}
-						</Link>
+						</NavLink>
 					);
 				}
 				return null;
