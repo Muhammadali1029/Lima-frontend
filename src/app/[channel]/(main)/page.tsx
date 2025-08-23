@@ -6,6 +6,7 @@ import { TechnologySafetySection } from "@/ui/components/TechnologySafetySection
 import { CustomerTestimonialsSection } from "@/ui/components/CustomerTestimonialsSection";
 import { ShopByCategorySection } from "@/ui/components/ShopByCategorySection";
 import { BlogSection } from "@/ui/components/BlogSection";
+import { CTASection } from "@/ui/components/CTASection";
 
 export const metadata = {
 	title: "Premium Motorcycle Gear | Unrivaled Protection on the Road",
@@ -44,6 +45,9 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 
 			{/* Blog Section */}
 			<BlogSection />
+
+			{/* Call to Action Section */}
+			<CTASection />
 		</>
 	);
 }
