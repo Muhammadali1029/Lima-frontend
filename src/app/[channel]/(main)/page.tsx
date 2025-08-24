@@ -1,4 +1,4 @@
-import { ProductListByCollectionDocument } from "@/gql/graphql";
+import { ProductListByCollectionDocument, ProductListDocument } from "@/gql/graphql";
 import { executeGraphQL } from "@/lib/graphql";
 import { Hero } from "@/ui/components/Hero";
 import { FeaturedProductsSection } from "@/ui/components/FeaturedProductsSection";
@@ -16,7 +16,9 @@ export const metadata = {
 
 export default async function Page(props: { params: Promise<{ channel: string }> }) {
 	const params = await props.params;
-	const data = await executeGraphQL(ProductListByCollectionDocument, {
+
+	// Try to fetch featured products first
+	const featuredData = await executeGraphQL(ProductListByCollectionDocument, {
 		variables: {
 			slug: "featured-products",
 			channel: params.channel,
@@ -24,7 +26,20 @@ export default async function Page(props: { params: Promise<{ channel: string }>
 		revalidate: 60,
 	});
 
-	const products = data.collection?.products?.edges?.map(({ node: product }) => product) || [];
+	// If no featured products collection exists, try to get any products
+	let products = featuredData.collection?.products?.edges?.map(({ node: product }) => product) || [];
+
+	// Fallback: if no featured products, get any products from the general product list
+	if (!products.length) {
+		const fallbackData = await executeGraphQL(ProductListDocument, {
+			variables: {
+				first: 6, // Limit to 6 products for the homepage
+				channel: params.channel,
+			},
+			revalidate: 60,
+		});
+		products = fallbackData.products?.edges?.map(({ node: product }) => product) || [];
+	}
 
 	return (
 		<>

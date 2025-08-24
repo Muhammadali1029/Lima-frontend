@@ -33,6 +33,7 @@ export const NavLinks = async ({ channel }: { channel: string }) => {
 				}
 				return null;
 			})}
+			<NavLink href="/about">About Us</NavLink>
 		</>
 	);
 };

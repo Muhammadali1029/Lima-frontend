@@ -35,10 +35,8 @@ export function FeaturedProductsSection({
 	subtitle = "Handpicked motorcycle gear for riders who demand excellence. Each piece represents the pinnacle of protection, style, and performance.",
 	showCTA = true,
 }: FeaturedProductsSectionProps) {
-	// Don't render if no products
-	if (!products.length) {
-		return null;
-	}
+	// Show placeholder if no products
+	const hasProducts = products.length > 0;
 
 	// Feature highlights for motorcycle gear
 	const features = [
@@ -103,7 +101,34 @@ export function FeaturedProductsSection({
 
 				{/* Products Grid */}
 				<div className="mt-20">
-					<ProductList products={products} />
+					{hasProducts ? (
+						<ProductList products={products} />
+					) : (
+						<div className="text-center">
+							<div className="mx-auto max-w-md rounded-lg border border-surface-muted/20 bg-surface-medium/50 p-8">
+								<svg
+									className="mx-auto h-12 w-12 text-text-muted"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="1.5"
+										d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+									/>
+								</svg>
+								<h3 className="mt-4 font-display text-lg font-semibold text-secondary">
+									Products Coming Soon
+								</h3>
+								<p className="mt-2 text-text-muted">
+									We&apos;re carefully curating our premium motorcycle gear collection. Check back soon for
+									exciting new arrivals!
+								</p>
+							</div>
+						</div>
+					)}
 				</div>
 
 				{/* Call to Action */}
